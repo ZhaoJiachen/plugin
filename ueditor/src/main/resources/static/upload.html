@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传</title>
+    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+    <script src="layui/layui.js" charset="utf-8"></script>
+</head>
+<body>
+    <div class="layui-upload">
+        <button type="button" class="layui-btn" id="img">上传图片</button>
+        <div class="layui-upload-list">
+            <img class="layui-upload-img" id="img-region">
+            <p id="demoText"></p>
+        </div>
+    </div>
+</body>
+<script>
+    layui.use('upload', function() {
+        var $ = layui.jquery
+            , upload = layui.upload;
+        var uploadInst = upload.render({
+            elem: '#img'
+            , url: '/file/upload'
+            ,contextType:false
+            , done: function (res) {
+                $('#img-region').attr('src', result);
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+//                var demoText = $('#demoText');
+//                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+//                demoText.find('.demo-reload').on('click', function () {
+//                    uploadInst.upload();
+//                });
+            }
+        });
+    })
+
+</script>
+</html>
